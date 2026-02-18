@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Mi Portfolio</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}"
+        />
+    </head>
+    <body>
+        <h1>Bienvenido a mi proyecto Flask</h1>
+        <p>Este es un ejemplo simple y limpio para mi portfolio.</p>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" />
+            <button type="submit">Convert</button>
+        </form>
+
+        <h3>Original</h3>
+        <img src="{{ url_for('static', filename='input.jpg') }}" />
+
+        {% if image_ready %}
+        <img src="{{ url_for('static', filename='output.jpg') }}" />
+        {% endif %}
+    </body>
+</html>
