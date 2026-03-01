@@ -211,20 +211,18 @@
           photo to make it your own.
         </p>
         <form method="POST" enctype="multipart/form-data">
-            <input type="file" name="image" id="fileInput" onchange="previewImage(this)" />
-            <button type="submit">Convert</button>
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Default file input example</label>
+            <input class="form-control" type="file" name="image" id="fileInput" onchange="previewImage(this)">
+            <button class="btn btn-lg btn-light fw-bold border-white bg-white mt-5" type="submit">Convert</button>
+          </div>
         </form>
-        <p class="lead">
-          <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white"
-            >Learn more</a
-          >
-        </p>
         {% if not image_ready %}
-          <div id="placeholder" class="placeholder col-12 placeholder-lg h-100"></div>
+          <div id="placeholder" class="placeholder col-12 placeholder-lg"></div>
         {% endif %}
-        <img id="preview" style="display:none" />
+        <img class="img-fluid rounded mx-auto" id="preview" style="display:none" />
         {% if image_ready %}        
-          <img src="{{ url_for('static', filename='output_' + filename) }}?t={{ timestamp }}" />
+          <img class="img-fluid rounded mx-auto d-block" src="{{ url_for('static', filename='output_' + filename) }}?t={{ timestamp }}" />
         {% endif %}
       </main>
       <footer class="mt-auto text-white-50">
