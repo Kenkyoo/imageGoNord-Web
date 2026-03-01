@@ -27,7 +27,7 @@ def index():
         print("Convertida")
         image_ready = True
 
-    return render_template("index.html", image_ready=image_ready, image_up=image_up, timestamp=int(time.time()))
+    return render_template("index.html", image_ready=image_ready, timestamp=int(time.time()))
 
 
 if __name__ == "__main__":
