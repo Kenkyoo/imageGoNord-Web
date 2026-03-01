@@ -217,15 +217,12 @@
           </div>
         </form>
         {% if not image_ready %}
-          <div id="placeholder" class="placeholder col-12 placeholder-lg" style="height: 400px; background-color: #434C5E;"></div>
+          <div id="placeholder" class="placeholder col-12 placeholder-lg shadow-lg p-3 mb-5 bg-body-tertiary rounded" style="height: 400px; background-color: #434C5E;"></div>
         {% endif %}
-        <img class="img-fluid rounded mx-auto" id="preview" style="display:none" />
+        <img class="img-fluid rounded mx-auto shadow-lg p-3 mb-5 bg-body-tertiary" id="preview" style="display:none" />
         {% if image_ready %}        
-          <img class="img-fluid rounded mx-auto d-block" src="{{ url_for('static', filename='images/output_' + filename) }}?t={{ timestamp }}" />
+          <img class="img-fluid rounded mx-auto d-block shadow-lg p-3 mb-5 bg-body-tertiary" src="{{ url_for('static', filename='images/output_' + filename) }}?t={{ timestamp }}" />
         {% endif %}
-        <div id="loading" style="display:none">
-          <p>Convirtiendo...</p>
-        </div>
       </main>
       <footer class="mt-auto text-white-50 pt-5 mt-5">
         <p>
@@ -249,7 +246,8 @@
     reader.readAsDataURL(file);
   }
   function showLoading() {
-    document.getElementById("loading").style.display = "block";
+    document.querySelector("button[type=submit]").textContent = "Converting...";
+    document.querySelector("button[type=submit]").disabled = true;
   }
   </script>  
   </body>
