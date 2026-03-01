@@ -219,10 +219,12 @@
             >Learn more</a
           >
         </p>
-        <div id="placeholder" class="placeholder col-12 placeholder-lg h-100"></div>
+        {% if not image_ready %}
+          <div id="placeholder" class="placeholder col-12 placeholder-lg h-100"></div>
+        {% endif %}
         <img id="preview" style="display:none" />
         {% if image_ready %}        
-            <img src="{{ url_for('static', filename='output.jpg') }}?t={{ timestamp }}" />
+          <img src="{{ url_for('static', filename='output_' + filename) }}?t={{ timestamp }}" />
         {% endif %}
       </main>
       <footer class="mt-auto text-white-50">

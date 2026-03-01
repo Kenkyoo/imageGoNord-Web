@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    image_up = False
+    filename = ""
     image_ready = False
     if request.method == "POST":
         for f in ["static/input.jpg", "static/output.jpg"]:
@@ -17,17 +17,15 @@ def index():
         print("POST recibido")
         file = request.files["image"]
         print("Archivo:", file.filename)
-        file.save("static/input.jpg")
+        filename = file.filename
+        file.save(f"static/{filename}")
         print("Guardado")
-        image_up = True
         go_nord = GoNord()
-        image = go_nord.open_image("static/input.jpg")
-        print("Imagen abierta")
-        go_nord.convert_image(image, save_path="static/output.jpg")
-        print("Convertida")
+        image = go_nord.open_image(f"static/{filename}")
+        go_nord.convert_image(image, save_path=f"static/output_{filename}") 
         image_ready = True
 
-    return render_template("index.html", image_ready=image_ready, timestamp=int(time.time()))
+    return render_template("index.html", filename=filename, image_ready=image_ready, timestamp=int(time.time()))
 
 
 if __name__ == "__main__":
