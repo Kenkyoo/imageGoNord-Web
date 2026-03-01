@@ -208,7 +208,7 @@
         <p class="lead">
           Transform your images with Nord color palette dithering
         </p>
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" onsubmit="showLoading()">
           <div class="mb-3">
             <label for="formFile" class="form-label">Select an image here
             </label>
@@ -223,6 +223,9 @@
         {% if image_ready %}        
           <img class="img-fluid rounded mx-auto d-block" src="{{ url_for('static', filename='images/output_' + filename) }}?t={{ timestamp }}" />
         {% endif %}
+        <div id="loading" style="display:none">
+          <p>Convirtiendo...</p>
+        </div>
       </main>
       <footer class="mt-auto text-white-50 pt-5 mt-5">
         <p>
@@ -244,6 +247,9 @@
         img.style.display = "block";
     };
     reader.readAsDataURL(file);
+  }
+  function showLoading() {
+    document.getElementById("loading").style.display = "block";
   }
   </script>  
   </body>
