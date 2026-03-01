@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, send_file
 from ImageGoNord import GoNord
 import time
 import os
+import glob
 
 app = Flask(__name__)
 
@@ -11,18 +12,17 @@ def index():
     filename = ""
     image_ready = False
     if request.method == "POST":
-        for f in ["static/input.jpg", "static/output.jpg"]:
-            if os.path.exists(f):
-                os.remove(f)        
+        for f in glob.glob("static/images/*"):
+            os.remove(f)        
         print("POST recibido")
         file = request.files["image"]
         print("Archivo:", file.filename)
         filename = file.filename
-        file.save(f"static/{filename}")
+        file.save(f"static/images/{filename}")
         print("Guardado")
         go_nord = GoNord()
-        image = go_nord.open_image(f"static/{filename}")
-        go_nord.convert_image(image, save_path=f"static/output_{filename}") 
+        image = go_nord.open_image(f"static/images/{filename}")
+        go_nord.convert_image(image, save_path=f"static/images/output_{filename}") 
         image_ready = True
 
     return render_template("index.html", filename=filename, image_ready=image_ready, timestamp=int(time.time()))

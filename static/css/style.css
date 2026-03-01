@@ -17,8 +17,18 @@
  */
 
 body {
+  background-color: #2E3440;
+  color: #D8DEE9;
   text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
   box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+}
+
+a {
+  color: #88C0D0;
+}
+
+a:hover {
+  color: #81A1C1;
 }
 
 .cover-container {
