@@ -15,11 +15,11 @@
             <input type="file" name="image" />
             <button type="submit">Convert</button>
         </form>
-        {% if image_ready %}
+        {% if image_up %}
             <h3>Original</h3>
             <img src="{{ url_for('static', filename='input.jpg') }}" />
-
-        
+        {% endif %}
+        {% if image_ready %}        
             <img src="{{ url_for('static', filename='output.jpg') }}?t={{ timestamp }}" />
         {% endif %}
     </body>
