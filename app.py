@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, send_file
 from ImageGoNord import GoNord
+import time
 
 app = Flask(__name__)
 
@@ -7,23 +8,21 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     image_ready = False
-
     if request.method == "POST":
+        print("POST recibido")
         file = request.files["image"]
-        file.save("input.jpg")
-
+        print("Archivo:", file.filename)
+        file.save("static/input.jpg")
+        print("Guardado")
         go_nord = GoNord()
         image = go_nord.open_image("static/input.jpg")
-        go_nord.enable_avg_algorithm()
+        print("Imagen abierta")
         go_nord.convert_image(image, save_path="static/output.jpg")
-
+        print("Convertida")
         image_ready = True
 
-    return render_template("index.html", image_ready=image_ready)
+    return render_template("index.html", image_ready=image_ready, timestamp=int(time.time()))
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
 
 if __name__ == "__main__":
     app.run(debug=True)

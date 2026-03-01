@@ -15,12 +15,12 @@
             <input type="file" name="image" />
             <button type="submit">Convert</button>
         </form>
-
-        <h3>Original</h3>
-        <img src="{{ url_for('static', filename='input.jpg') }}" />
-
         {% if image_ready %}
-        <img src="{{ url_for('static', filename='output.jpg') }}" />
+            <h3>Original</h3>
+            <img src="{{ url_for('static', filename='input.jpg') }}" />
+
+        
+            <img src="{{ url_for('static', filename='output.jpg') }}?t={{ timestamp }}" />
         {% endif %}
     </body>
 </html>
