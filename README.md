@@ -1,4 +1,4 @@
-# Image Converter
+# Image Nord Converter
 
 A tool to bring any image to the nord palette
 
@@ -16,7 +16,7 @@ Aplicación simple con interfaz gráfica para convertir imágenes usando una pal
 ## Requisitos
 
 ```bash
-pip install requirements.txt
+pip freeze > requirements.txt
 ```
 
 ## Uso
