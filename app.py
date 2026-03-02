@@ -5,7 +5,7 @@ import os
 import glob
 
 app = Flask(__name__)
-
+os.makedirs("static/images", exist_ok=True)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
